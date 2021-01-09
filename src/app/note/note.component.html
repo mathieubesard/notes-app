@@ -1,1 +1,13 @@
-<p>{{ note.content }} <button (click)="onDeleteClick()">delete</button></p>
+<div>
+    <h4>Note:</h4>
+    <p>
+        <label>Content: </label><input [(ngModel)]="note.content" [ngModelOptions]="{standalone: true}"/>
+    </p>
+    <p>
+        <label>Category: </label><input [(ngModel)]="note.category" [ngModelOptions]="{standalone: true}"/>
+    </p>
+    <p>
+        <button (click)="onUpdateNoteClick()">Update this note</button>
+        <button (click)="onDeleteNoteClick()">Delete this note</button>
+    </p>
+</div>

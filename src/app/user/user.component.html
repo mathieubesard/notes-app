@@ -1,6 +1,14 @@
-<h3>{{ user.name }} <button (click)="onDeleteClick()">delete</button></h3>
-<h4>Notes</h4>
-<input [(ngModel)]="newContent"/>
-<input [(ngModel)]="newCategory"/>
-<button (click)="addNote()">Add note</button>
-<app-note *ngFor="let note of notes" [note]="note" (deleted)="deleteNote($event)"></app-note>
+<h2>{{ user.name }} <button (click)="onDeleteUserClick()">delete</button></h2>
+<h3>Notes</h3>
+<form>
+    <h4>New note:</h4>
+    <p>
+        <label>Content: </label><input [(ngModel)]="newContent" [ngModelOptions]="{standalone: true}"/>
+    </p>
+    <p>
+        <label>Category: </label><input [(ngModel)]="newCategory" [ngModelOptions]="{standalone: true}"/>
+    </p>
+    <button (click)="addNote()">Add note</button>
+</form>
+<br/>
+<app-note *ngFor="let note of notes" [note]="note" (deletedNote)="deletedNote($event)"></app-note>

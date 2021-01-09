@@ -7,14 +7,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class NoteComponent implements OnInit {
   @Input() note: any;
-  @Output() deleted = new EventEmitter<string>();
+  @Output() deletedNote = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onDeleteClick = () => {
-    this.deleted.emit(this.note.content);
+  onUpdateNoteClick = () => {
+    console.log('onUpdateNoteClick');
+  }
+
+  onDeleteNoteClick = () => {
+    this.deletedNote.emit(this.note);
   }
 }

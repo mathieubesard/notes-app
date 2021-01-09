@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   @Input() users: any;
   id: string;
   user: any;
-  @Output() deleted = new EventEmitter<string>();
+  @Output() deletedUser = new EventEmitter<string>();
   notes: string[];
   newContent: string = "";
   newCategory: string = "";
@@ -56,7 +56,7 @@ export class UserComponent implements OnInit {
     });
   };
 
-  onDeleteClick = () => {
-    this.deleted.emit(this.user.name);
+  onDeleteUserClick = () => {
+    this.deletedUser.emit(this.user.name);
   }
 }
