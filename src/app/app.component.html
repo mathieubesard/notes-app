@@ -1,8 +1,5 @@
-<div class="root">
-  <p>Gebruikers applicatie</p>
-  <hr />
+<app-top-bar></app-top-bar>
 
-  <hr/>
-  <input [(ngModel)]="newName"/>
-  <button (click)="addUser()">Voeg een test gebruiker toe</button>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
