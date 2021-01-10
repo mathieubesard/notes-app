@@ -7,5 +7,5 @@
     <a [title]="user.name" [routerLink]="['/user', user.id]">
         <h3>{{user.name}}</h3>
     </a>
-    <button (click)="onDeleteClick()">Delete this user</button>
+    <button (click)="deleteUser(user.name)">Delete this user</button>
 </div>

@@ -41,7 +41,12 @@ export class ApiService {
       'params': { 'id': id }
     };
     return this.http.delete(
-      'https://island-nettle-hockey.glitch.me/users', options
+      'https://island-nettle-hockey.glitch.me/notes', options
     );
+  }
+
+  updateNote = (id: string, content: string, category: string) => {
+    let data = { 'id': id,  'content': content, 'category': category};
+    return this.http.put('https://island-nettle-hockey.glitch.me/notes', data);
   }
 }

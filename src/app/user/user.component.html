@@ -1,4 +1,4 @@
-<h2>{{ user.name }} <button (click)="onDeleteUserClick()">delete</button></h2>
+<h2>{{ user.name }}</h2>
 <h3>Notes</h3>
 <form>
     <h4>New note:</h4>
@@ -11,4 +11,4 @@
     <button (click)="addNote()">Add note</button>
 </form>
 <br/>
-<app-note *ngFor="let note of notes" [note]="note" (deletedNote)="deletedNote($event)"></app-note>
+<app-note *ngFor="let note of notes" [note]="note" (deletedNote)="deleteNote($event)"></app-note>

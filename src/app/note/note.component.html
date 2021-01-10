@@ -7,7 +7,7 @@
         <label>Category: </label><input [(ngModel)]="note.category" [ngModelOptions]="{standalone: true}"/>
     </p>
     <p>
-        <button (click)="onUpdateNoteClick()">Update this note</button>
+        <button (click)="updateNote(note.id)">Update this note</button>
         <button (click)="onDeleteNoteClick()">Delete this note</button>
     </p>
 </div>

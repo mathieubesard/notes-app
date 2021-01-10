@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -31,6 +31,16 @@ export class UsersComponent implements OnInit {
           this.users = data;
         });
       }
+    });
+  };
+
+  deleteUser = (name: string) => {
+    this.apiService.deleteUser(name).subscribe((result: any) => {
+      console.log(result);
+
+      this.apiService.getUsers().subscribe((data: string[]) => {
+        this.users = data;
+      });
     });
   };
 }
