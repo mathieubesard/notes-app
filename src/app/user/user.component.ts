@@ -84,8 +84,14 @@ export class UserComponent implements OnInit {
 
   filterCategory = () => {
     this.clearContent();
-    console.log(this.allNotes.filter(n => n.category == this.searchCategory));
-    this.notes = this.allNotes.filter(n => n.category == this.searchCategory);
+    if (!this.searchCategory) {
+      console.log(this.allNotes.filter(n => n.category == this.searchCategory));
+      this.notes = this.allNotes.filter(n => n.category == this.searchCategory);
+    }
+    else {
+      console.log(this.allNotes.filter(n => n.category.toLowerCase().includes(this.searchCategory.toLowerCase())));
+      this.notes = this.allNotes.filter(n => n.category.toLowerCase().includes(this.searchCategory.toLowerCase()));      
+    }
   }
 
   clearCategory = () => {
