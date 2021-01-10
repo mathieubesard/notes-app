@@ -26,13 +26,18 @@ export class ApiService {
     return this.http.post('https://island-nettle-hockey.glitch.me/notes', data);
   }
 
-  deleteUser = (name: string) => {
-    // Delete parameters meegeven onder 'options' > 'params'
+  deleteUserWithoutNotes = (name: string) => {
     let options = {
       'params': { 'name': name }
     };
     return this.http.delete(
       'https://island-nettle-hockey.glitch.me/users', options
+    );
+  }
+
+  deleteUser = (name: string) => {
+    return this.http.get(
+      `https://island-nettle-hockey.glitch.me/remove?name=${name}`
     );
   }
 

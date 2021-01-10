@@ -10,9 +10,12 @@ import { ApiService } from '../api.service';
 export class UserComponent implements OnInit {
   id: string;
   user: any;
-  notes: string[];
+  notes: any[];
   newContent: string = "";
   newCategory: string = "";
+  searchContent: string = "";
+  searchCategory: string = "";
+  allNotes: any[];
 
   constructor(
     private apiService: ApiService,
@@ -29,11 +32,15 @@ export class UserComponent implements OnInit {
         console.log(users);
         this.user = users.find(u => u.id == this.id);
         console.log(this.user);
-        this.apiService.getNotes(this.user.name).subscribe((data: any[]) => {
-          this.notes = data;
-          console.log(this.notes);
-        });
+        this.getNotes();
       });
+  }
+
+  getNotes = () => {
+    this.apiService.getNotes(this.user.name).subscribe((data: any[]) => {
+      this.notes = data;
+      this.allNotes = data;
+    });        
   }
 
   addNote = () => {
@@ -46,9 +53,7 @@ export class UserComponent implements OnInit {
       else {
         this.newContent = "";
         this.newCategory = "";
-        this.apiService.getNotes(this.user.name).subscribe((data: string[]) => {
-          this.notes = data;
-        });
+        this.getNotes();
       }
     });
   };
@@ -61,10 +66,30 @@ export class UserComponent implements OnInit {
         console.log(`Error: ${error}`);
       } 
       else {
-        this.apiService.getNotes(this.user.name).subscribe((data: any[]) => {
-          this.notes = data;
-        });
+        this.getNotes();
       }
     });
+  }
+
+  filterContent = () => {
+    this.clearCategory();
+    console.log(this.allNotes.filter(n => n.content.toLowerCase().includes(this.searchContent.toLowerCase())));
+    this.notes = this.allNotes.filter(n => n.content.toLowerCase().includes(this.searchContent.toLowerCase()));
+  }
+
+  clearContent = () => {
+    this.searchContent = "";
+    this.notes = this.allNotes;
+  }
+
+  filterCategory = () => {
+    this.clearContent();
+    console.log(this.allNotes.filter(n => n.category == this.searchCategory));
+    this.notes = this.allNotes.filter(n => n.category == this.searchCategory);
+  }
+
+  clearCategory = () => {
+    this.searchCategory = "";
+    this.notes = this.allNotes;
   }
 }
