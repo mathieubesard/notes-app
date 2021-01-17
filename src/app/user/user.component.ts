@@ -5,7 +5,8 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  preserveWhitespaces: true
 })
 export class UserComponent implements OnInit {
   id: string;
@@ -24,14 +25,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      console.log(params);
       this.id = params.get('userId');
       });
-      console.log(this.id);
       this.apiService.getUsers().subscribe((users: any[]) => {
-        console.log(users);
         this.user = users.find(u => u.id == this.id);
-        console.log(this.user);
         this.getNotes();
       });
   }
@@ -59,7 +56,6 @@ export class UserComponent implements OnInit {
   };
 
   deleteNote = (id: string) => {
-    console.log(`deleteNote: id: ${id}`);
     this.apiService.deleteNote(id).subscribe((result: any) => {
       let error = result.error;
       if (error) {
@@ -73,7 +69,6 @@ export class UserComponent implements OnInit {
 
   filterContent = () => {
     this.clearCategory();
-    console.log(this.allNotes.filter(n => n.content.toLowerCase().includes(this.searchContent.toLowerCase())));
     this.notes = this.allNotes.filter(n => n.content.toLowerCase().includes(this.searchContent.toLowerCase()));
   }
 
@@ -85,11 +80,9 @@ export class UserComponent implements OnInit {
   filterCategory = () => {
     this.clearContent();
     if (!this.searchCategory) {
-      console.log(this.allNotes.filter(n => n.category == this.searchCategory));
       this.notes = this.allNotes.filter(n => n.category == this.searchCategory);
     }
     else {
-      console.log(this.allNotes.filter(n => n.category.toLowerCase().includes(this.searchCategory.toLowerCase())));
       this.notes = this.allNotes.filter(n => n.category.toLowerCase().includes(this.searchCategory.toLowerCase()));      
     }
   }

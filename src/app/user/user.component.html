@@ -1,30 +1,34 @@
-<h2>{{ user.name }}</h2>
-<h3>Notes</h3>
-<form>
+<div class="mat-typography">
+    <h2 *ngIf="user">{{user.name}}</h2>
+
+    <h3>Notes</h3>
+
     <h4>Filter content:</h4>
-    <p>
-        <label>Content: </label><input [(ngModel)]="searchContent" [ngModelOptions]="{standalone: true}"/>
-    </p>
-    <button (click)="filterContent()">Filter by content</button>
-    <button (click)="clearContent()">Clear content filter</button>
-</form>
-<form>
+    <mat-form-field>
+        <mat-label>Content</mat-label>
+        <input matInput [(ngModel)]="searchContent" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="filterContent()">Filter by content</button>
+    <button mat-raised-button color="basic" (click)="clearContent()">Clear content filter</button>
+
     <h4>Filter category:</h4>
-    <p>
-        <label>Category: </label><input [(ngModel)]="searchCategory" [ngModelOptions]="{standalone: true}"/>
-    </p>
-    <button (click)="filterCategory()">Filter by category</button>
-    <button (click)="clearCategory()">Clear category filter</button>
-</form>
-<form>
-    <h4>New note:</h4>
-    <p>
-        <label>Content: </label><input [(ngModel)]="newContent" [ngModelOptions]="{standalone: true}"/>
-    </p>
-    <p>
-        <label>Category: </label><input [(ngModel)]="newCategory" [ngModelOptions]="{standalone: true}"/>
-    </p>
-    <button (click)="addNote()">Add note</button>
-</form>
-<br/>
-<app-note *ngFor="let note of notes" [note]="note" (deletedNote)="deleteNote($event)"></app-note>
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <input matInput [(ngModel)]="searchCategory" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="filterCategory()">Filter by category</button>
+    <button mat-raised-button color="basic" (click)="clearCategory()">Clear category filter</button>
+
+    <h4>Add new note:</h4>
+    <mat-form-field>
+        <mat-label>Content</mat-label>
+        <input matInput [(ngModel)]="newContent" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+        <input matInput [(ngModel)]="newCategory" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addNote()">Add note</button>
+
+    <app-note *ngFor="let note of notes" [note]="note" (deletedNote)="deleteNote($event)"></app-note>
+</div>

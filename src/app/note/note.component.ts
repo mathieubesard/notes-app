@@ -4,7 +4,8 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.css']
+  styleUrls: ['./note.component.css'],
+  preserveWhitespaces: true
 })
 export class NoteComponent implements OnInit {
   @Input() note: any;
@@ -18,12 +19,10 @@ export class NoteComponent implements OnInit {
   updateNote = (id: string) => {
     console.log('updateNote ' + id);
     this.apiService.updateNote(this.note.id, this.note.content, this.note.category).subscribe((result: any) => {
-      console.log(result);
     });
   }
 
   onDeleteNoteClick = () => {
-    console.log('onDeleteNoteClick ' + this.note.id);
     this.deletedNote.emit(this.note.id);
   }
 }

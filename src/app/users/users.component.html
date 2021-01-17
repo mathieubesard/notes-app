@@ -1,11 +1,19 @@
-<h2>Users</h2>
+<div class="mat-typography">
+    <h2>Users</h2>
 
-<input [(ngModel)]="newName"/>
-<button (click)="addUser()">Add user</button>
-
-<div *ngFor="let user of users">
-    <a [title]="user.name" [routerLink]="['/user', user.id]">
-        <h3>{{user.name}}</h3>
-    </a>
-    <button (click)="deleteUser(user.name)">Delete this user</button>
+    <h3>Add new user:</h3>
+    <mat-form-field>
+        <mat-label>New user</mat-label>
+        <input matInput [(ngModel)]="newName"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addUser()">Add new user</button>
+    
+    <h3>Users:</h3>
+    
+    <div class="mat-typography" *ngFor="let user of users">
+        <h4>
+        <a [title]="user.name" [routerLink]="['/user', user.id]">{{user.name}}</a>
+        <button mat-raised-button color="warn" (click)="deleteUser(user.name)">Delete this user</button>
+        </h4>
+    </div>
 </div>

@@ -9,9 +9,6 @@ import { ApiService } from './api.service';
 export class AppComponent {
   title = 'notes-app';
   users: any;
-  newName: string = "";
-  newContent: string = "";
-  newCategory: string = "";
 
   constructor(private apiService: ApiService) {}
 

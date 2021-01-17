@@ -4,7 +4,8 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  preserveWhitespaces: true
 })
 export class UsersComponent implements OnInit {
   @Input() users: any;
@@ -13,7 +14,6 @@ export class UsersComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    console.log('init users');    
     this.apiService.getUsers().subscribe((data: any) => {
       this.users = data;
     });
@@ -22,7 +22,6 @@ export class UsersComponent implements OnInit {
   addUser = () => {
     this.apiService.addUser(this.newName).subscribe((result: any) => {
       let error = result.error;
-
       if (error) {
         console.log(`Error: ${error}`);
       } else {
@@ -36,8 +35,6 @@ export class UsersComponent implements OnInit {
 
   deleteUser = (name: string) => {
     this.apiService.deleteUser(name).subscribe((result: any) => {
-      console.log(result);
-
       this.apiService.getUsers().subscribe((data: string[]) => {
         this.users = data;
       });

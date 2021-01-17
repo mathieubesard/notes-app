@@ -1,13 +1,19 @@
-<div>
+<div class="mat-typography">
     <h4>Note:</h4>
+
     <p>
-        <label>Content: </label><input [(ngModel)]="note.content" [ngModelOptions]="{standalone: true}"/>
+        <mat-form-field>
+            <mat-label>Content</mat-label>
+            <input matInput [(ngModel)]="note.content" [ngModelOptions]="{standalone: true}"/>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <input matInput [(ngModel)]="note.category" [ngModelOptions]="{standalone: true}"/>
+        </mat-form-field>
     </p>
+    
     <p>
-        <label>Category: </label><input [(ngModel)]="note.category" [ngModelOptions]="{standalone: true}"/>
-    </p>
-    <p>
-        <button (click)="updateNote(note.id)">Update this note</button>
-        <button (click)="onDeleteNoteClick()">Delete this note</button>
+        <button button mat-raised-button color="primary" (click)="updateNote(note.id)">Update this note</button>
+        <button button mat-raised-button color="warn" (click)="onDeleteNoteClick()">Delete this note</button>
     </p>
 </div>
